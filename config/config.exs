@@ -25,3 +25,13 @@ config :logger, :console,
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
+
+config :guardian, Guardian,
+  allowed_algos: ["HS512"],
+  verify_module: Guardian.JWT,
+  issuer: "Chronos",
+  ttl: {7, :days},
+  allowed_drift: 2000,
+  verify_issuer: true,
+  secret_key: "WHlJYfA8ERIVSryq3yGRFbidrwvPXsrvuM0jfeHnUCKWnh2tC+ILJp1FoPIn17hT",
+  serializer: Chronos.GuardianSerializer
