@@ -20,6 +20,15 @@ defmodule Chronos.Router do
     resources "/users", UserController
   end
 
+  scope "/auth", Chronos do
+    pipe_through :browser
+
+    get "/login", AuthenticationController, :login
+    post "/login", AuthenticationController, :login_callback
+    get "/signup", AuthenticationController, :signup
+    post "/signup", AuthenticationController, :signup_callback
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", Chronos do
   #   pipe_through :api
