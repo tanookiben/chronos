@@ -7,6 +7,9 @@ defmodule Chronos.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+
+    plug Guardian.Plug.VerifySession
+    plug Guardian.Plug.LoadResource
   end
 
   pipeline :api do
@@ -14,7 +17,7 @@ defmodule Chronos.Router do
   end
 
   scope "/", Chronos do
-    pipe_through :browser # Use the default browser stack
+    pipe_through :browser
 
     get "/", PageController, :index
     resources "/users", UserController
@@ -23,10 +26,13 @@ defmodule Chronos.Router do
   scope "/auth", Chronos do
     pipe_through :browser
 
-    get "/login", AuthenticationController, :login
-    post "/login", AuthenticationController, :login_callback
-    get "/signup", AuthenticationController, :signup
-    post "/signup", AuthenticationController, :signup_callback
+    get "/login", AuthController, :login
+    post "/login", AuthController, :login_callback
+
+    get "/signup", AuthController, :signup
+    post "/signup", AuthController, :signup_callback
+
+    post "/logout", AuthController, :logout
   end
 
   # Other scopes may use custom stacks.

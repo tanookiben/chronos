@@ -15,18 +15,22 @@ defmodule Chronos.User do
   Builds a changeset based on the `struct` and `params`.
   """
   def changeset(struct, params \\ %{}) do
-    hashed = if is_nil(params["password"]) do
-      params
-    else
-      encrypt_password(params)
-    end
-
     struct
-    |> cast(hashed, [:email, :password])
+    |> cast(params, [:email, :password])
     |> validate_required([:email, :password])
+    |> encrypt_password()
   end
 
-  def encrypt_password(params) do
-    %{params | "password" => Comeonin.Bcrypt.hashpwsalt(params["password"])}
+  def encrypt_password(changeset) do
+    raw = changeset.changes[:password]
+    if is_nil(raw) do
+      changeset
+    else
+      change(changeset, %{password: Comeonin.Bcrypt.hashpwsalt(raw)})
+    end
+  end
+
+  def authenticate(user, password) do
+    Comeonin.Bcrypt.checkpw(password, user.password)
   end
 end
