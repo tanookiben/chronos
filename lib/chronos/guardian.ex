@@ -1,5 +1,5 @@
 defmodule Chronos.GuardianSerializer do
-  @behavior Guardian.Serializer
+  @behaviour Guardian.Serializer
 
   alias Chronos.Repo
   alias Chronos.User
@@ -8,7 +8,7 @@ defmodule Chronos.GuardianSerializer do
     {:ok, "User:#{user.id}"}
   end
 
-  def for_token(_), do
+  def for_token(_) do
     {:error, "Unknown resource type"}
   end
 
