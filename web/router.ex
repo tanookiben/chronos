@@ -21,6 +21,7 @@ defmodule Chronos.Router do
 
     get "/", PageController, :index
     resources "/users", UserController
+    resources "/events", EventController
   end
 
   scope "/auth", Chronos do
