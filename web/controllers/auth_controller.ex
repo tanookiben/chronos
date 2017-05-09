@@ -1,7 +1,7 @@
 defmodule Chronos.AuthController do
   use Chronos.Web, :controller
 
-  plug Guardian.Plug.EnsureNotAuthenticated, handler: Chronos.PlugHandler
+  plug Guardian.Plug.EnsureNotAuthenticated, handler: Chronos.PlugHandler, except: [:logout]
 
   alias Chronos.User
 

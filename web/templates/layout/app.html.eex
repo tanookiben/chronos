@@ -1,35 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <title>Hello Chronos!</title>
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
-  </head>
+  <title>The God of Time</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+</head>
 
-  <body>
-    <div class="container">
-      <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-          </ul>
-        </nav>
-        <span class="logo"></span>
-      </header>
+<body>
+  <div class="container-fluid">
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="/">Chronos</a>
 
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <%= form_for @conn, auth_path(@conn, :logout), [as: :logout],  fn f -> %>
+          <%= submit "Log Out", class: "btn btn-primary btn-sm align-middle" %>
+        <% end %>
+      </div>
+    </nav>
 
-      <main role="main">
+    <div class="row">
+      <div class="col">
+        <%= if !is_nil(get_flash(@conn, :info)) do %>
+          <p class="alert alert-info alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span area-hidden="true">&times;</span>
+            </button>
+            <%= get_flash(@conn, :info) %>
+          </p>
+        <% end %>
+
+        <%= if !is_nil(get_flash(@conn, :error)) do %>
+          <p class="alert alert-danger alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span area-hidden="true">&times;</span>
+            </button>
+            <%= get_flash(@conn, :error) %>
+          </p>
+        <% end %>
+
         <%= render @view_module, @view_template, assigns %>
-      </main>
+      </div>
+    </div>
 
-    </div> <!-- /container -->
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
-  </body>
+  </div> <!-- /container -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+</body>
 </html>
