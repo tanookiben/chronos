@@ -6,8 +6,8 @@ defmodule Chronos.Event do
 
   schema "events" do
     field :name, :string
-    field :start_date, :string
-    field :end_date, :string
+    field :start_date, :date
+    field :end_date, :date
     field :description, :string
     field :location, :string
 
