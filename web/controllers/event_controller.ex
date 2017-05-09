@@ -1,6 +1,8 @@
 defmodule Chronos.EventController do
   use Chronos.Web, :controller
 
+  plug Guardian.Plug.EnsureAuthenticated, handler: Chronos.PlugHandler
+
   alias Chronos.Event
 
   def index(conn, _params) do
