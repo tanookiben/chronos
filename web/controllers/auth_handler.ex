@@ -1,4 +1,4 @@
-defmodule Chronos.PlugHandler do
+defmodule Chronos.AuthHandler do
   use Chronos.Web, :controller
 
   def unauthenticated(conn, _params) do

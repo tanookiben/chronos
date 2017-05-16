@@ -1,7 +1,7 @@
 defmodule Chronos.EventController do
   use Chronos.Web, :controller
 
-  plug Guardian.Plug.EnsureAuthenticated, handler: Chronos.PlugHandler
+  plug Guardian.Plug.EnsureAuthenticated, handler: Chronos.AuthHandler
 
   alias Chronos.Event
 
