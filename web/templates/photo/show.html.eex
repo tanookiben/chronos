@@ -1,0 +1,23 @@
+<h2>Show photo</h2>
+
+<ul>
+
+  <li>
+    <strong>Event:</strong>
+    <%= @photo.event_id %>
+  </li>
+
+  <li>
+    <strong>Uploader:</strong>
+    <%= @photo.uploader %>
+  </li>
+
+  <li>
+    <strong>S3 url:</strong>
+    <%= @photo.s3_url %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: photo_path(@conn, :edit, @photo) %>
+<%= link "Back", to: photo_path(@conn, :index) %>
