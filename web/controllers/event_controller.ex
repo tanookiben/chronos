@@ -6,7 +6,8 @@ defmodule Chronos.EventController do
   alias Chronos.Event
 
   def index(conn, _params) do
-    events = Repo.all(Event)
+    query = Event |> order_by([u], desc: :start_date)
+    events = Repo.all(query)
     render(conn, "index.html", events: events)
   end
 
