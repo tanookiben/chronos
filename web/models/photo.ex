@@ -5,9 +5,9 @@ defmodule Chronos.Photo do
   @derive {Phoenix.Param, key: :id}
 
   schema "photos" do
-    field :event_id, :string
+    field :event_id, :binary_id
     field :uploader, :string
-    field :s3_url, :string
+    field :s3_path, :string
 
     timestamps()
   end
@@ -17,7 +17,7 @@ defmodule Chronos.Photo do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:event_id, :uploader, :s3_url])
-    |> validate_required([:event_id, :uploader, :s3_url])
+    |> cast(params, [:event_id, :uploader, :s3_path])
+    |> validate_required([:event_id, :uploader, :s3_path])
   end
 end
