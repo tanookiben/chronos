@@ -13,11 +13,8 @@
   </li>
 
   <li>
-    <strong>S3 url:</strong>
-    <%= @photo.s3_url %>
+    <strong>S3 path:</strong>
+    <%= @photo.s3_path %>
   </li>
 
 </ul>
-
-<%= link "Edit", to: photo_path(@conn, :edit, @photo) %>
-<%= link "Back", to: photo_path(@conn, :index) %>
