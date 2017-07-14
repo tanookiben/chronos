@@ -22,7 +22,7 @@ defmodule Chronos.Router do
     get "/", PageController, :index
     resources "/users", UserController
     resources "/events", EventController
-    resources "/photos", PhotoController
+    resources "/photos", PhotoController, only: [:new, :create, :show, :delete]
   end
 
   scope "/auth", Chronos do
