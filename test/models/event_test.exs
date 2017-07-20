@@ -3,7 +3,7 @@ defmodule Chronos.EventTest do
 
   alias Chronos.Event
 
-  @valid_attrs %{description: "some content", end_date: "some content", location: "some content", name: "some content", start_date: "some content"}
+  @valid_attrs %{description: "some content", end_date: Ecto.Date.cast!("2017-01-02"), location: "some content", name: "some content", start_date: Ecto.Date.cast!("2017-01-01")}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do

@@ -3,7 +3,7 @@ defmodule Chronos.PhotoTest do
 
   alias Chronos.Photo
 
-  @valid_attrs %{event_id: "some content", s3_url: "some content", uploader: "some content"}
+  @valid_attrs %{event_id: "some content", s3_path: "some content", uploader: "some content"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do

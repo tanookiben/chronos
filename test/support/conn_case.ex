@@ -29,6 +29,15 @@ defmodule Chronos.ConnCase do
 
       # The default endpoint for testing
       @endpoint Chronos.Endpoint
+
+      def guardian_login(user \\ %Chronos.User{}, token \\ :token, opts \\ []) do
+        build_conn()
+        |> bypass_through(Chronos.Router, [:browser])
+        |> get("/")
+        |> Guardian.Plug.sign_in(user, token, opts)
+        |> send_resp(200, "Success")
+        |> recycle()
+      end
     end
   end
 
